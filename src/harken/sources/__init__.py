@@ -13,6 +13,7 @@ from harken.sources.hackernews import HackerNewsSource
 from harken.sources.mastodon import MastodonSource
 from harken.sources.reddit import RedditSource
 from harken.sources.rss import RSSSource
+from harken.sources.serp import SerpSource
 from harken.sources.stackoverflow import StackOverflowSource
 from harken.sources.x import XSource
 from harken.sources.youtube import YouTubeSource
@@ -23,6 +24,7 @@ REGISTRY: dict[str, type[Source]] = {
     MastodonSource.name: MastodonSource,
     BlueskySource.name: BlueskySource,
     RSSSource.name: RSSSource,
+    SerpSource.name: SerpSource,
     StackOverflowSource.name: StackOverflowSource,
     XSource.name: XSource,
     YouTubeSource.name: YouTubeSource,
