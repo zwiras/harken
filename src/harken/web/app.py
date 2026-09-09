@@ -262,7 +262,7 @@ def create_app(
             "font-src 'self'; script-src 'self'; connect-src 'self'; base-uri 'none'; "
             "frame-ancestors 'none'; form-action 'self'"
         )
-        response.headers["Referrer-Policy"] = "no-referrer"
+        response.headers["Referrer-Policy"] = "same-origin"
         response.headers["X-Content-Type-Options"] = "nosniff"
         response.headers["X-Frame-Options"] = "DENY"
         if auth_mode != "none":
