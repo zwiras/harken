@@ -77,6 +77,20 @@ def test_dashboard_renders_with_no_data(tmp_path):
     assert r.text.count("setup needed") >= 5
 
 
+def test_dashboard_switchers_use_external_event_handlers(tmp_path):
+    db_path = str(tmp_path / "switchers.db")
+    with Store(db_path) as store:
+        store.save_tracking("acme", ["hackernews"])
+        store.create_project("Acme")
+    client = TestClient(create_app(db_path))
+    response = client.get("/")
+
+    assert response.status_code == 200
+    assert 'onchange="this.form.submit()"' not in response.text
+    assert 'script-src \'self\'' in response.headers["content-security-policy"]
+    assert 'addEventListener("change"' in client.get("/static/app.js").text
+
+
 def test_account_mode_redirects_to_login_and_keeps_health_public(tmp_path):
     db_path = str(tmp_path / "account-gate.db")
     cfg = Config(db_path=db_path, auth_mode="accounts")

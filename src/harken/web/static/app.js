@@ -2,6 +2,13 @@
 // The server already renders the full feed; this swaps it for a filtered view
 // by calling the JSON API. No framework, no CDN.
 (function () {
+  const switchers = document.querySelectorAll(".switcher select");
+  switchers.forEach((select) => {
+    select.addEventListener("change", () => {
+      select.form?.submit();
+    });
+  });
+
   const scanForm = document.getElementById("scan-form");
   if (scanForm) {
     const scanStatus = document.getElementById("scan-status");
