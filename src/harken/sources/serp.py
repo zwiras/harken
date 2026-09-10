@@ -39,7 +39,7 @@ class SerpSource(Source):
     """Search-engine mentions via DuckDuckGo HTML (fragile, free, no key)."""
 
     name = "serp"
-    label = "Search"
+    label = "Serp"
     needs_config = False
 
     def __init__(self, delay_sec: float = 2.5, **options):
